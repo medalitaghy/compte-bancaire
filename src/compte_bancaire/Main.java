@@ -1,19 +1,35 @@
 package compte_bancaire;
 
+import java.util.Scanner;
+
+
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Compte c1  = new Compte("medali",1000) ; 
-		Compte c2  = new Compte("sidi",5000) ;
-		c2.afficher();
-		
-		
-		
-//		System.out.println("decouvert :"+c1.getDecouvert());
-//		System.out.println("decouvert max :"+c1.getDecouvertmax());
-		System.out.println("nombre de  compte dans  le banque :"+Compte.nb_Compte);		
-	}
+	 static Scanner sc = new Scanner(System.in);
 
+	public static void main(String[] args)
+	{
+		
+		Compte[] listcp = new Compte[2] ; 
+		
+		
+		for(int i =0; i<2;i++){
+			System.out.println("le compte N "+(i+1));
+			System.out.println("entrez le nom :");
+			String nom = sc.next();
+			System.out.println("entrez le soled :");
+			float solde = sc.nextFloat() ;
+			listcp[i] = new Compte(nom,solde) ; 	
+		}
+		
+	
+		for(int i =0; i<2;i++){
+			listcp[i].afficher();	
+		}
+		
+		
+		
+		
+	}
+	
 }
