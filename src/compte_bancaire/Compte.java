@@ -1,6 +1,8 @@
 package compte_bancaire;
 
-
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Compte  {
 	static int nb_Compte = 10000 ; 
@@ -119,16 +121,28 @@ public class Compte  {
 		System.out.println("==============  compte N : "+getNumero()+ "==================   ") ;
 	}
 	
-	static void listerCompte(Compte[] list,String s){
-		if(list.length >0){
-			System.out.println(s);
-			for(int i =0; i<list.length;i++){
-				if(list[i] != null )
-					System.out.println(i+1 +" : nom est "+list[i].getNom()) ;
-			}	
-		}else{
-			
+	protected static int listerCompte(ArrayList<Compte> listcpt,String message){
+		if(listcpt.size() >0){
+			System.out.println(message);
+			for(Compte c : listcpt){
+				System.out.println(c.getNumero()-10000 +" : nom est "+c.getNom()) ;
+			}
+			return listcpt.size() ; 
 		}
+		return 0  ;
+	}
+	
+	protected static int choixCompte(String  s,int r){
+		int choix ;
+		String chek = "^[0-"+r+"]$"; 
+		Pattern p = Pattern.compile(chek); 
+		Matcher m = p.matcher(s) ; 
+		if(m.find()){
+			choix = Integer.parseInt(s); 
+		}else{
+			choix = -1 ; 
+		}
+		return choix ; 
 	}
 
 	
